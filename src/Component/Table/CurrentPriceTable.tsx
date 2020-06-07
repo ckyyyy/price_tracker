@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table } from 'antd';
+import moment from 'moment';
 
 import { CurrentPriceTableState, NowPriceResponseData } from '../../Interface/Interface'
 
@@ -29,6 +30,7 @@ class CurrentPriceTable extends Component<{}, CurrentPriceTableState> {
             })
             .then(json =>
                 this.setState({ nowPrice: json })
+                // console.log(moment.utc(json.time.updatedISO).format("YYYY-MM-DD HH:mm:ss"))
             )
             .catch(error => console.error(error))
     }
@@ -38,16 +40,22 @@ class CurrentPriceTable extends Component<{}, CurrentPriceTableState> {
         const dataSource = [
             {
                 key: '1',
-                time: nowPrice?.time.updated,
+                utcTime: <div style={{ textAlign: 'right' }}> {nowPrice ? moment.utc(nowPrice.time.updatedISO).format("YYYY-MM-DD HH:mm:ss") : null} </div>,
+                localTime: <div style={{ textAlign: 'center' }}> {nowPrice ? moment.utc(nowPrice.time.updatedISO).local().format("YYYY-MM-DD HH:mm:ss") : null}</div>,
                 bpi: nowPrice?.bpi.USD.rate
             }
         ]
 
         const columns = [
             {
-                title: 'Time',
-                dataIndex: 'time',
-                key: 'time',
+                title: <div style={{ textAlign: 'right' }}>Time (UTC)</div>,
+                dataIndex: 'utcTime',
+                key: 'utcTime',
+            },
+            {
+                title: <div style={{ textAlign: 'center' }}>Time (local)</div>,
+                dataIndex: 'localTime',
+                key: 'localTime',
             },
             {
                 title: 'Bitcoin Price Index (USD)',
@@ -57,18 +65,10 @@ class CurrentPriceTable extends Component<{}, CurrentPriceTableState> {
         ];
 
         return (
-            
-            <div className="PriceTable">
-                    <h2>Current Bitcoin Price in USD</h2>
-                    <Table dataSource={dataSource} columns={columns} pagination={false} footer={() => nowPrice?.disclaimer}
-                        style={{
-                            padding: '10px 10px 20px', width: '60%', display: "flex",
-                            flexDirection: "column",
-                            justifyItems: "center",
-                            alignItems: "center",
-                            margin: "auto"
-                        }}
-                    />
+
+            <div className="CurrentPrice">
+                <h2>Current Bitcoin Price in USD</h2>
+                <Table className="PriceTable" dataSource={dataSource} columns={columns} pagination={false} footer={() => nowPrice?.disclaimer} />
             </div>
         );
 

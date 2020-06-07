@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #0c2138;
 }
 
 .App-logo {
@@ -35,4 +36,47 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+h1, h2, h3{
+  color: #ffffff;
+  font-weight: bolder;
+}
+
+.PriceTable {
+  margin: 40px 120px;
+  background-color: #0a1b2e;
+  box-shadow: 10px 15px #888888;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  margin: 10px auto 30px ;
+  border-radius: 5px;
+  border-style: groove;
+  border-collapse: collapse
+}
+
+.ant-table-footer{
+  background-color: #3e3f40;
+  color: #c6c8ca;
+  padding: 8px 20px;
+  font-size: 0.8rem;
+  /* font-weight: lighter; */
+}
+
+thead[class*="ant-table-thead"] th{
+  background-color: #0a294d !important;
+  color: #b6b3b3
+}
+
+.SelectChart{
+  width: 120px;
+}
+
+.ant-select-selector{
+  background-color: #cacaca !important;
+  color: #5d5e5f;
+  font-weight: bolder;
 }

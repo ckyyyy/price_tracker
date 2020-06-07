@@ -44,6 +44,10 @@ class HistoricalPriceChart extends Component<{ data: Array<any> }, OldPriceChart
                 max: 7250,
                 min: 7150,
             },
+            style:
+            {
+                height: '450px'
+            }
         };
 
 

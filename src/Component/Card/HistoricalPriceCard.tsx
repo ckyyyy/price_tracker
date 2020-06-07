@@ -49,13 +49,13 @@ class HistoricalPriceCard extends Component<{}, OldPriceCardState> {
             <div className="Chart">
                 <h2>Historical Bitcoin Price</h2>
 
-                <div className="chartTitle">
+                <div className="ChartTitle">
                     <Row>
                         <Col span={6} offset={9}>
-                            <h3>Price on 2020-01-01</h3>
+                            <h3>Price on 2020-01-01 (UTC Time)</h3>
                         </Col>
                         <Col span={4} offset={4}>
-                            <Select defaultValue="byMinutes" style={{ width: 120 }} onChange={this.handleChange}>
+                            <Select className="ChartSelect" defaultValue="byMinutes" onChange={this.handleChange}>
                                 <Option value="byMinutes">By Minutes</Option>
                                 <Option value="byHours">By Hours</Option>
                             </Select>
